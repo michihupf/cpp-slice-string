@@ -32,10 +32,9 @@ namespace slice {
             string result;
             auto itr = this->cbegin() + a;
             auto stop = this->cbegin() + b;
-            result.push_back(*itr);
-            while(step > 0 ? itr + step < stop : itr + step > stop) {
-                itr += step;
+            while(step > 0 ? itr + step <= stop : itr + step >= stop) {
                 result.push_back(*itr);
+                itr += step;
             }
 
             return result;
@@ -45,11 +44,12 @@ namespace slice {
 };
 
 int main(int argc, char **argv) {
-    slice::string str = "This is a test";
+    slice::string str = "Thisais a test";
     cout << str << endl;
 
     cout << str(0,5,1) << endl;
     cout << str(5,0,-1) << endl;
+    cout << str(1,1) << endl;
 
     return 0;
 }
